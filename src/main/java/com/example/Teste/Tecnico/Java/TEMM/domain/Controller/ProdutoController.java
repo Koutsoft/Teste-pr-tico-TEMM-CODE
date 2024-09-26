@@ -22,6 +22,7 @@ import com.example.Teste.Tecnico.Java.TEMM.domain.service.ProdutoService;
 
 
 
+
 @RestController
 @RequestMapping("/produto")
 public class ProdutoController {
@@ -31,14 +32,14 @@ public class ProdutoController {
 
 
     @GetMapping("/listarProdutos")
-    public ResponseEntity<List<Produto>> listarProdutos() {
+    public ResponseEntity<List<Produto>> listarProdutos() throws Exception {
         List<Produto> produto = produtoService.listarTodosOsProdutos();
     return new ResponseEntity<>(produto, HttpStatus.OK);
 
     }
 
     @PostMapping("/cadastrarProduto")
-    public ResponseEntity<  Produto> cadasProduto(@RequestBody Produto prod) {
+    public ResponseEntity<  Produto> cadastrarProduto(@RequestBody Produto prod) {
       Produto produto =   produtoService.salvarNovoProduto(prod);
     return  new ResponseEntity<>(produto, HttpStatus.CREATED);
 
@@ -57,6 +58,15 @@ public class ProdutoController {
         Produto produto = produtoService.updateProduto(id,prod);
         return new ResponseEntity<>(produto,HttpStatus.OK);
     }
+
+    @GetMapping("/listar/{categoriaID}")
+    public ResponseEntity<List<Produto>> listarTodosOsProdutosPorCategoria(@PathVariable Long categoriaID){
+      List<Produto> produto =  produtoService.listProdPorCat(categoriaID);
+        return new ResponseEntity<>(produto,HttpStatus.OK);
+    }
+    
+
+   
     
 
 
