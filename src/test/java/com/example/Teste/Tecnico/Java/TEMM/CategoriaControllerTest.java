@@ -12,6 +12,7 @@ import com.example.Teste.Tecnico.Java.TEMM.domain.Entity.Produto;
 @ExtendWith(MockitoExtension.class)
 public class CategoriaControllerTest {
 
+    //TODO veriicar o pq está danddo nullPointer;
     @InjectMocks
     CategoriaController controller;
 
